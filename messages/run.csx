@@ -69,7 +69,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 
                     client = new ConnectorClient(new Uri(messageactivity.ServiceUrl));
                     var triggerReply = messageactivity.CreateReply();
-                    triggerReply.Text = $"This is coming back from the trigger! {message.Text}";
+                    triggerReply.Text = $"{message.Text}";
                     await client.Conversations.ReplyToActivityAsync(triggerReply);
                     log.Info("Trigger end");
                     break;
