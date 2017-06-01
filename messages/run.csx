@@ -63,6 +63,9 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     var message = JsonConvert.DeserializeObject<Message>(((JObject) triggerEvent.Value).GetValue("Message").ToString());
                     var messageactivity = (Activity)message.RelatesTo.GetPostToBotMessage();
                     
+                    log.Info(messageactivity.ServiceUrl);
+                    log.Info(message.Text)
+
                     client = new ConnectorClient(new Uri(messageactivity.ServiceUrl));
                     var triggerReply = messageactivity.CreateReply();
                     triggerReply.Text = $"This is coming back from the trigger! {message.Text}";
