@@ -63,6 +63,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     var message = JsonConvert.DeserializeObject<Message>(((JObject) triggerEvent.Value).GetValue("Message").ToString());
                     var messageactivity = (Activity)message.RelatesTo.GetPostToBotMessage();
                     
+                    log.Info(((JObject) triggerEvent.Value).GetValue("Message").ToString());
                     log.Info(messageactivity.ServiceUrl);
                     log.Info(message.RelatesTo.ToString());
 
