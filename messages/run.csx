@@ -64,7 +64,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     var messageactivity = (Activity)message.RelatesTo.GetPostToBotMessage();
                     
                     log.Info(messageactivity.ServiceUrl);
-                    log.Info(message);
+                    log.Info(message.RelatesTo);
 
                     client = new ConnectorClient(new Uri(messageactivity.ServiceUrl));
                     var triggerReply = messageactivity.CreateReply();
