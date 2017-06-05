@@ -15,7 +15,7 @@ using Microsoft.Bot;
 public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
     log.Info($"Webhook was triggered!");
-
+    log.Info($"Received Bot message {req}");
     // Initialize the azure bot
     using (BotService.Initialize())
     {
