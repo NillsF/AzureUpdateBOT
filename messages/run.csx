@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using Microsoft.Bot;
 
 public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -73,7 +74,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 
                     string link = new string("https://tctechcrunch2011.files.wordpress.com/2016/07/microsoft.jpg?w=738");
                     CardImage image = new CardImage(url.link);
-
+                    
                     CardAction plButton = new CardAction()
                     {
                         Value = $"https://en.wikipedia.org/wiki/Microsoft",
@@ -87,8 +88,8 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     {
                         Title = $"I'm a hero card about Microsoft",
                         Subtitle = $"Link to Wikipedia Page",
-                        Images = image,
-                        Buttons = plButton
+                        Images = new List<CardImage> { image },
+                        Buttons = new List<CardAction> { plButton }
                     };
 
                     Attachment plAttachment = plCard.ToAttachment();
