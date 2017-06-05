@@ -72,8 +72,8 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     var triggerReply = messageactivity.CreateReply();
                     triggerReply.Text = $"{message.Text}";
 
-                    string link = new string("https://tctechcrunch2011.files.wordpress.com/2016/07/microsoft.jpg?w=738");
-                    CardImage image = new CardImage(url:link);
+                    string link = "https://tctechcrunch2011.files.wordpress.com/2016/07/microsoft.jpg?w=738";
+                    CardImage image = new CardImage(url = link);
                     
                     CardAction plButton = new CardAction()
                     {
