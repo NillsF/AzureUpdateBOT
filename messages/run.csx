@@ -75,10 +75,10 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     IMessageActivity message = Activity.CreateMessageActivity();
 
 
-                    message.ChannelId = "1194599644001103-1840582029587341";
+                    message.ChannelId = "facebook";
                     message.From = botAccount;
                     message.Recipient = userAccount;
-                    message.Conversation = new ConversationAccount(id: conversationId);
+                    message.Conversation = new ConversationAccount(id: "1194599644001103-1840582029587341");
                     message.Text = "Hello, this is a notification";
                     message.Locale = "en-Us";
                     await connector.Conversations.SendToConversationAsync((Activity)message);
