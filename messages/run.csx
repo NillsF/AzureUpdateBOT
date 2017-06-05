@@ -19,7 +19,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
     // Initialize the azure bot
     using (BotService.Initialize())
     {
-        // Deserialize the incoming activity
+ /*       // Deserialize the incoming activity
         string jsonContent = await req.Content.ReadAsStringAsync();
         var activity = JsonConvert.DeserializeObject<Activity>(jsonContent);
         
@@ -60,14 +60,14 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                 case ActivityTypes.Trigger:
                     // handle proactive Message from function
                     log.Info("Trigger start");
-                    //IEventActivity triggerEvent = activity;
+                    IEventActivity triggerEvent = activity;
                     //var message = JsonConvert.DeserializeObject<Message>(((JObject) triggerEvent.Value).GetValue("Message").ToString());
                     //var messageactivity = (Activity)message.RelatesTo.GetPostToBotMessage();
 
                     //log.Info(((JObject) triggerEvent.Value).GetValue("Message").ToString());
                     //log.Info(messageactivity.ServiceUrl);
                     //log.Info(message.RelatesTo.ToString());
-
+*/
                     var userAccount = new ChannelAccount("1194599644001103", "Nills Franssens");
                     var botAccount = new ChannelAccount("1840582029587341", "nilfranazureupdates");
                     var connector = new ConnectorClient(new Uri("https://facebook.botframework.com"));
@@ -114,16 +114,14 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     await client.Conversations.ReplyToActivityAsync(triggerReply);
                     log.Info("Trigger end");
                     break;
-                    */
+                    
                 case ActivityTypes.ContactRelationUpdate:
                 case ActivityTypes.Typing:
                 case ActivityTypes.DeleteUserData:
                 case ActivityTypes.Ping:
                 default:
                     log.Error($"Unknown activity type ignored: {activity.GetActivityType()}"); 
-                    break;
-            }
-        }
+                    break; */
         return req.CreateResponse(HttpStatusCode.Accepted);
     }    
 }
