@@ -12,10 +12,20 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot;
 
+
+public class BotMessage
+{
+    public string Source { get; set; }
+    public string Message { get; set; }
+}
+
+
 public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
     log.Info($"Webhook was triggered!");
-    log.Info($"Received Bot message {req}");
+    string jsonContent = await req.Content.ReadAsStringAsync();
+    log.Info($"Received Bot message {jsonContent}");
+
     // Initialize the azure bot
     using (BotService.Initialize())
     {
