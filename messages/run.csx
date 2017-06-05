@@ -72,6 +72,9 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     var botAccount = new ChannelAccount("1840582029587341", "nilfranazureupdates");
                     var connector = new ConnectorClient(new Uri("https://facebook.botframework.com"));
 
+                    IMessageActivity message = Activity.CreateMessageActivity();
+
+
                     message.ChannelId = "1194599644001103-1840582029587341";
                     message.From = botAccount;
                     message.Recipient = userAccount;
