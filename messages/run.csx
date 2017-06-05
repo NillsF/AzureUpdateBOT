@@ -70,6 +70,30 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
                     client = new ConnectorClient(new Uri(messageactivity.ServiceUrl));
                     var triggerReply = messageactivity.CreateReply();
                     triggerReply.Text = $"{message.Text}";
+
+                    string link = new string("https://tctechcrunch2011.files.wordpress.com/2016/07/microsoft.jpg?w=738");
+                    CardImage image = new CardImage(url.link);
+
+                    CardAction plButton = new CardAction()
+                    {
+                        Value = $"https://en.wikipedia.org/wiki/Microsoft",
+                        Type = "openUrl",
+                        Title = "WikiPedia Page"
+                    };
+
+
+
+                    HeroCard plCard = new HeroCard()
+                    {
+                        Title = $"I'm a hero card about Microsoft",
+                        Subtitle = $"Link to Wikipedia Page",
+                        Images = image,
+                        Buttons = plButton
+                    };
+
+                    Attachment plAttachment = plCard.ToAttachment();
+                    triggerReply.Attachments.Add(plAttachment);
+
                     await client.Conversations.ReplyToActivityAsync(triggerReply);
                     log.Info("Trigger end");
                     break;
